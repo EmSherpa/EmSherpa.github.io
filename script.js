@@ -236,34 +236,62 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize first track on load
   loadTrack(0);
   /* ─── CONTACT FORM ───────────────────────────────── */
+  /* ─── CONTACT FORM ───────────────────────────────── */
   const contactForm = document.getElementById('contactForm');
   const formSuccess = document.getElementById('formSuccess');
 
   if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
+      
       const name = contactForm.name?.value.trim();
       const email = contactForm.email?.value.trim();
       const message = contactForm.message?.value.trim();
 
       if (!name || !email || !message) return;
 
-      // Simulate send
       const submitBtn = contactForm.querySelector('button[type="submit"]');
       if (submitBtn) {
         submitBtn.disabled = true;
         submitBtn.querySelector('.btn-text').textContent = 'Sending...';
       }
 
-      setTimeout(() => {
-        contactForm.reset();
+      // Create FormData and append the Web3Forms key
+      const formData = new FormData(contactForm);
+      formData.append("access_key", "4d1b5b89-e9d4-44d6-832c-ce98e988b8a5"); 
+
+      try {
+        const response = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          body: formData
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+          contactForm.reset();
+          if (formSuccess) {
+            formSuccess.textContent = "Message sent. Respect. 🤝";
+            formSuccess.classList.add('visible');
+          }
+        } else {
+          if (formSuccess) {
+            formSuccess.textContent = "Something went wrong. Try again.";
+            formSuccess.style.borderColor = "var(--white-3)";
+            formSuccess.style.color = "var(--white)";
+            formSuccess.classList.add('visible');
+          }
+        }
+      } catch (error) {
+        console.error("Form submission error:", error);
+      } finally {
         if (submitBtn) {
           submitBtn.disabled = false;
           submitBtn.querySelector('.btn-text').textContent = 'Send It';
         }
-        if (formSuccess) formSuccess.classList.add('visible');
+        // Hide the success/error message after 5 seconds
         setTimeout(() => formSuccess?.classList.remove('visible'), 5000);
-      }, 1200);
+      }
     });
   }
 
