@@ -177,6 +177,49 @@ body.cursor-hover .cursor-follower {
   padding: 8rem 2rem 4rem;
 }
 
+.hero-content {
+  max-width: 1140px;
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+  display: flex;                /* New: Makes it side-by-side */
+  align-items: center;          /* New: Centers them vertically */
+  justify-content: space-between; 
+  gap: 2rem;
+}
+
+/* Constrain the text so it doesn't push the 3D model off screen */
+.hero-text-col {
+  flex: 1;
+  max-width: 600px;
+}
+
+/* The 2D container */
+.hero-2d-col {
+  flex: 1;
+  height: 500px; /* Adjust this based on how tall your character is */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 10; 
+}
+
+/* Style the SVG to fit beautifully and cast a dark shadow */
+#avatar-svg {
+  width: 100%;
+  max-width: 320px;
+  filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.8));
+  transition: transform var(--transition);
+}
+
+/* Add a slight hover effect to the whole avatar */
+.hero-2d-col:hover #avatar-svg {
+  transform: translateY(-5px);
+}
+
+
 .hero-bg-lines {
   position: absolute;
   inset: 0;
@@ -1028,6 +1071,32 @@ body.cursor-hover .cursor-follower {
 
 /* ─── RESPONSIVE ─────────────────────────────────────── */
 @media (max-width: 767px) {
+
+  .hero-content {
+    flex-direction: column; /* Stacks text on top of 3D on phones */
+    text-align: center;
+    padding-top: 2rem;
+  }
+
+  .hero-eyebrow {
+    justify-content: center;
+  }
+
+  .hero-headline {
+    justify-content: center;
+  }
+
+  .hero-cta {
+    justify-content: center;
+  }
+
+  .hero-2d-col {
+    width: 100%;
+    height: 350px; /* Smaller height for mobile */
+    margin-top: 1rem;
+  }
+
+
   .nav-links {
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;

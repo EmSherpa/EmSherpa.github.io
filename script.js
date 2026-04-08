@@ -96,44 +96,47 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ─── AUDIO PLAYER ───────────────────────────────── */
   const tracks = [
-    { title: 'Vibing',     duration: '3:03', totalSecs: 183, src: 'audio/vibing.mp3' },
-    { title: 'Child of God',      duration: '3:13', totalSecs: 192, src: 'audio/child_of_god.mp3' },
-    { title: 'Kaalpanik Vastavik',         duration: '4:00', totalSecs: 240, src: 'audio/kaalpanik_astavik.mp3' },
-    { title: 'Living Lowkey',       duration: '3:06', totalSecs: 186, src: 'audio/living-lowkey.mp3' },
-    { title: 'Grown up',      duration: '3:25', totalSecs: 205, src: 'audio/grown-up.mp3' },
-    { title: 'Fukera',  duration: '2:32', totalSecs: 152, src: 'audio/fukera.mp3' },
+    { title: 'Vibing',             duration: '3:03', src: 'audio/vibing.mp3' },
+    { title: 'Child of God',       duration: '3:13', src: 'audio/child_of_god.mp3' },
+    { title: 'Maya Timilai',       duration: '3:34', src: 'audio/maya-timilai.mp3' },
+    { title: 'Living Lowkey',      duration: '3:06', src: 'audio/living_lowkey.mp3' },
+    { title: 'Grown up',           duration: '3:25', src: 'audio/grown_up.mp3' },
+    { title: 'Fukera',             duration: '2:32', src: 'audio/fukera.mp3' },
   ];
 
   let currentTrack = 0;
-  let isPlaying = false;
-  let progressInterval = null;
-  let currentSecs = 0;
+  const audio = document.getElementById('audioPlayer');
 
-  const nowTitle    = document.getElementById('nowTitle');
-  const timeTotal   = document.getElementById('timeTotal');
-  const timeCurrent = document.getElementById('timeCurrent');
+  const nowTitle      = document.getElementById('nowTitle');
+  const timeTotal     = document.getElementById('timeTotal');
+  const timeCurrent   = document.getElementById('timeCurrent');
   const progressFill  = document.getElementById('progressFill');
   const progressThumb = document.getElementById('progressThumb');
-  const btnPlay     = document.getElementById('btnPlay');
-  const btnPrev     = document.getElementById('btnPrev');
-  const btnNext     = document.getElementById('btnNext');
-  const trackItems  = document.querySelectorAll('.track-item');
-  const albumArt    = document.getElementById('albumArt');
-  const playerVis   = document.getElementById('playerVis');
-  const iconPlay    = btnPlay?.querySelector('.icon-play');
-  const iconPause   = btnPlay?.querySelector('.icon-pause');
+  const btnPlay       = document.getElementById('btnPlay');
+  const btnPrev       = document.getElementById('btnPrev');
+  const btnNext       = document.getElementById('btnNext');
+  const trackItems    = document.querySelectorAll('.track-item');
+  const albumArt      = document.getElementById('albumArt');
+  const playerVis     = document.getElementById('playerVis');
+  const iconPlay      = btnPlay?.querySelector('.icon-play');
+  const iconPause     = btnPlay?.querySelector('.icon-pause');
+  const progressTrack = document.getElementById('progressTrack');
 
   function formatTime(secs) {
+    if (isNaN(secs)) return "0:00";
     const m = Math.floor(secs / 60);
-    const s = secs % 60;
+    const s = Math.floor(secs % 60);
     return `${m}:${String(s).padStart(2, '0')}`;
   }
 
   function loadTrack(index) {
     currentTrack = index;
-    currentSecs = 0;
     const t = tracks[index];
+    
+    audio.src = t.src;
+    audio.load();
 
+    // Update UI text
     if (nowTitle) {
       nowTitle.style.opacity = '0';
       nowTitle.style.transform = 'translateY(6px)';
@@ -144,11 +147,12 @@ document.addEventListener('DOMContentLoaded', () => {
         nowTitle.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
       }, 150);
     }
-
+    
     if (timeTotal) timeTotal.textContent = t.duration;
     if (timeCurrent) timeCurrent.textContent = '0:00';
     setProgress(0);
 
+    // Update active state in playlist
     trackItems.forEach((item, i) => {
       item.classList.toggle('active', i === index);
     });
@@ -159,91 +163,78 @@ document.addEventListener('DOMContentLoaded', () => {
     if (progressThumb) progressThumb.style.left = `${pct}%`;
   }
 
-  function startProgress() {
-    clearInterval(progressInterval);
-    const t = tracks[currentTrack];
-    progressInterval = setInterval(() => {
-      currentSecs++;
-      if (currentSecs >= t.totalSecs) {
-        clearInterval(progressInterval);
-        playNext();
-        return;
+  function updateUIPlayState() {
+    const isPlaying = !audio.paused;
+    if (iconPlay)  iconPlay.classList.toggle('hidden', isPlaying);
+    if (iconPause) iconPause.classList.toggle('hidden', !isPlaying);
+    if (albumArt)  albumArt.classList.toggle('spinning', isPlaying);
+    if (playerVis) playerVis.classList.toggle('active', isPlaying);
+  }
+
+  // Play/Pause Button Logic
+  if (btnPlay) {
+    btnPlay.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+      } else {
+        audio.pause();
       }
-      const pct = (currentSecs / t.totalSecs) * 100;
-      setProgress(pct);
-      if (timeCurrent) timeCurrent.textContent = formatTime(currentSecs);
-    }, 1000);
+    });
   }
 
-  function stopProgress() {
-    clearInterval(progressInterval);
-  }
-
-  function setPlayState(playing) {
-    isPlaying = playing;
-    if (iconPlay)  iconPlay.classList.toggle('hidden', playing);
-    if (iconPause) iconPause.classList.toggle('hidden', !playing);
-    if (albumArt)  albumArt.classList.toggle('spinning', playing);
-    if (playerVis) playerVis.classList.toggle('active', playing);
-  }
-
+  // Next/Prev Buttons Logic
   function playNext() {
     loadTrack((currentTrack + 1) % tracks.length);
-    if (isPlaying) startProgress();
+    audio.play();
   }
 
   function playPrev() {
-    if (currentSecs > 3) {
-      currentSecs = 0;
-      setProgress(0);
-      if (timeCurrent) timeCurrent.textContent = '0:00';
-      if (isPlaying) startProgress();
+    // If more than 3 seconds in, restart the song. Otherwise, go to previous track.
+    if (audio.currentTime > 3) {
+      audio.currentTime = 0;
     } else {
       loadTrack((currentTrack - 1 + tracks.length) % tracks.length);
-      if (isPlaying) startProgress();
+      audio.play();
     }
   }
 
-  if (btnPlay) {
-    btnPlay.addEventListener('click', () => {
-      if (isPlaying) {
-        stopProgress();
-        setPlayState(false);
-      } else {
-        startProgress();
-        setPlayState(true);
-      }
-    });
-  }
+  if (btnNext) btnNext.addEventListener('click', playNext);
+  if (btnPrev) btnPrev.addEventListener('click', playPrev);
 
-  if (btnNext) btnNext.addEventListener('click', () => { playNext(); });
-  if (btnPrev) btnPrev.addEventListener('click', () => { playPrev(); });
-
+  // Playlist Click Logic
   trackItems.forEach((item, i) => {
     item.addEventListener('click', () => {
-      stopProgress();
       loadTrack(i);
-      setPlayState(true);
-      startProgress();
+      audio.play();
     });
   });
 
-  // Progress bar scrubbing
-  const progressTrack = document.getElementById('progressTrack');
+  // Native Audio Events (This syncs the progress bar perfectly with the actual audio)
+  if (audio) {
+    audio.addEventListener('play', updateUIPlayState);
+    audio.addEventListener('pause', updateUIPlayState);
+    audio.addEventListener('ended', playNext);
+    
+    audio.addEventListener('timeupdate', () => {
+      const pct = (audio.currentTime / audio.duration) * 100 || 0;
+      setProgress(pct);
+      if (timeCurrent) timeCurrent.textContent = formatTime(audio.currentTime);
+    });
+  }
+
+  // Scrubbing the progress bar
   if (progressTrack) {
     progressTrack.addEventListener('click', (e) => {
       const rect = progressTrack.getBoundingClientRect();
       const pct = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
-      const t = tracks[currentTrack];
-      currentSecs = Math.floor(pct * t.totalSecs);
-      setProgress(pct * 100);
-      if (timeCurrent) timeCurrent.textContent = formatTime(currentSecs);
+      if (audio.duration) {
+        audio.currentTime = pct * audio.duration;
+      }
     });
   }
 
-  // Initialise
+  // Initialize first track on load
   loadTrack(0);
-
   /* ─── CONTACT FORM ───────────────────────────────── */
   const contactForm = document.getElementById('contactForm');
   const formSuccess = document.getElementById('formSuccess');
@@ -309,3 +300,44 @@ document.addEventListener('DOMContentLoaded', () => {
   sections.forEach(sec => navObserver.observe(sec));
 
 });
+
+/* ─── 2D AVATAR EYE TRACKING ─────────────────────── */
+  const pupilLeft = document.getElementById('pupil-left');
+  const pupilRight = document.getElementById('pupil-right');
+  const eyeLeftCenter = document.getElementById('eye-left-center');
+  const eyeRightCenter = document.getElementById('eye-right-center');
+
+  if (pupilLeft && pupilRight && eyeLeftCenter && eyeRightCenter) {
+    document.addEventListener('mousemove', (e) => {
+      const mouseX = e.clientX;
+      const mouseY = e.clientY;
+
+      // Group eyes to loop through them easily
+      const eyes = [
+        { pupil: pupilLeft, centerEl: eyeLeftCenter },
+        { pupil: pupilRight, centerEl: eyeRightCenter }
+      ];
+
+      eyes.forEach(eye => {
+        // Get the current position of the eye relative to the viewport
+        const rect = eye.centerEl.getBoundingClientRect();
+        const eyeCenterX = rect.left + rect.width / 2;
+        const eyeCenterY = rect.top + rect.height / 2;
+
+        // Calculate the angle between the eye center and the mouse
+        const angle = Math.atan2(mouseY - eyeCenterY, mouseX - eyeCenterX);
+        
+        // Calculate the distance (cap it at 4px so the pupil stays inside the white area)
+        const distanceToMouse = Math.hypot(mouseX - eyeCenterX, mouseY - eyeCenterY);
+        const maxDistance = 3.5; 
+        const moveDistance = Math.min(maxDistance, distanceToMouse / 30); 
+
+        // Use math to figure out the X and Y translation
+        const moveX = Math.cos(angle) * moveDistance;
+        const moveY = Math.sin(angle) * moveDistance;
+
+        // Apply the transformation directly to the SVG element
+        eye.pupil.style.transform = `translate(${moveX}px, ${moveY}px)`;
+      });
+    });
+  }
