@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MINGMA SHERPA — Rhythm & Code</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Custom Cursor -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursorFollower"></div>
+
+  <!-- ═══════════════════════════════════ NAVBAR ═══════════════════════════════════ -->
+  <header class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="#hero" class="logo">
+        <span class="logo-main">MINGMA</span>
+        <span class="logo-sub">SHERPA</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav-links" id="navLinks">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#vault" class="nav-link">The Vault</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════ HERO ════════════════════════════════════ -->
+  <section class="hero" id="hero">
+    <div class="hero-bg-lines"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow reveal">
+        <span class="eyebrow-dot"></span>
+        <span>Kathmandu, Nepal</span>
+      </div>
+      <h1 class="hero-headline reveal">
+        <span class="headline-word">Rhythm</span>
+        <span class="headline-amp">&amp;</span>
+        <span class="headline-word">Code.</span>
+      </h1>
+      <p class="hero-sub reveal">Instruction Coach, Full-Stack Developer &amp; Rapper<br class="hide-mobile" /> based in Kathmandu, Nepal.</p>
+      <div class="hero-cta reveal">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="#vault" class="btn btn-outline">Listen to Tracks</a>
+      </div>
+    </div>
+    <div class="hero-visualizer" id="heroVisualizer">
+      <div class="vis-bar"></div><div class="vis-bar"></div><div class="vis-bar"></div>
+      <div class="vis-bar"></div><div class="vis-bar"></div><div class="vis-bar"></div>
+      <div class="vis-bar"></div><div class="vis-bar"></div><div class="vis-bar"></div>
+      <div class="vis-bar"></div><div class="vis-bar"></div><div class="vis-bar"></div>
+      <div class="vis-bar"></div><div class="vis-bar"></div><div class="vis-bar"></div>
+      <div class="vis-bar"></div><div class="vis-bar"></div><div class="vis-bar"></div>
+    </div>
+    <div class="hero-scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════ ABOUT ═══════════════════════════════════ -->
+  <section class="about section" id="about">
+    <div class="container">
+      <div class="section-label reveal">
+        <span class="label-num">01</span>
+        <span class="label-text">About</span>
+      </div>
+      <div class="about-grid">
+        <div class="about-text">
+          <h2 class="section-heading reveal">The <em>Artist</em><br />Behind the Screen.</h2>
+          <p class="about-body reveal">
+            I build robust educational systems by day and lay down tracks by night. Whether I'm architecting a Django backend or structuring a 16-bar verse, it's all about flow, logic, and delivery. With a background in Computer Applications and a passion for automation and hardware, I specialize in creating digital experiences that are as seamless as a perfect beat switch.
+          </p>
+          <div class="stack-label reveal">Stack</div>
+          <div class="stack-pills reveal">
+            <span class="pill">Python</span>
+            <span class="pill">Django</span>
+            <span class="pill">JavaScript</span>
+            <span class="pill">Firebase</span>
+            <span class="pill">Google Apps Script</span>
+            <span class="pill">Raspberry Pi</span>
+            <span class="pill">Make.com</span>
+          </div>
+        </div>
+        <div class="about-stat-col reveal">
+          <div class="stat-card">
+            <span class="stat-num">5+</span>
+            <span class="stat-desc">Years Teaching ICT</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num">10+</span>
+            <span class="stat-desc">Projects Shipped</span>
+          </div>
+          <div class="stat-card accent-card">
+            <span class="stat-num">∞</span>
+            <span class="stat-desc">Bars Written</span>
+          </div>
+          <div class="about-groove-ring">
+            <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="100" cy="100" r="90" stroke="#c0392b" stroke-width="0.5" stroke-dasharray="4 8"/>
+              <circle cx="100" cy="100" r="70" stroke="#c0392b" stroke-width="0.3" stroke-dasharray="2 6"/>
+              <circle cx="100" cy="100" r="50" stroke="#c0392b" stroke-width="0.5" stroke-dasharray="6 10"/>
+              <circle cx="100" cy="100" r="30" stroke="#c0392b" stroke-width="0.3" stroke-dasharray="1 4"/>
+              <circle cx="100" cy="100" r="10" fill="#c0392b" opacity="0.8"/>
+              <circle cx="100" cy="100" r="4" fill="#0a0a0a"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════════════════════════════════ PROJECTS ════════════════════════════════ -->
+  <section class="projects section" id="projects">
+    <div class="container">
+      <div class="section-label reveal">
+        <span class="label-num">02</span>
+        <span class="label-text">Projects</span>
+      </div>
+      <h2 class="section-heading reveal">Built Different.</h2>
+      <div class="projects-grid">
+
+        <article class="project-card reveal" data-index="01">
+          <div class="card-number">01</div>
+          <div class="card-body">
+            <h3 class="card-title">Digital Examination System</h3>
+            <p class="card-desc">Browser-lock examination portal with anti-cheating protocols, automated grading, and teacher control panel.</p>
+            <div class="card-tags">
+              <span class="tag">Django</span>
+              <span class="tag">Python</span>
+              <span class="tag">SQLite</span>
+            </div>
+          </div>
+          <div class="card-hover-bar">
+            <a href="https://iwschool.pythonanywhere.com/" class="card-link">View Project</a>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="card-visualizer">
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+        </article>
+
+        <article class="project-card reveal" data-index="02">
+          <div class="card-number">02</div>
+          <div class="card-body">
+            <h3 class="card-title">Lost &amp; Found Portal</h3>
+            <p class="card-desc">School-wide web portal with student claim system, real-time database, and image upload functionality.</p>
+            <div class="card-tags">
+              <span class="tag">Firebase</span>
+            </div>
+          </div>
+          <div class="card-hover-bar">
+            <a href="https://iws-find.web.app" class="card-link">View Project</a>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="card-visualizer">
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+        </article>
+
+        <article class="project-card reveal" data-index="03">
+          <div class="card-number">03</div>
+          <div class="card-body">
+            <h3 class="card-title">Virtual STEM Art Gallery</h3>
+            <p class="card-desc">Digital exhibition platform featuring interactive 3D object scaling and a full student art showcase system.</p>
+            <div class="card-tags">
+              <span class="tag">JavaScript</span>
+              <span class="tag">3D CSS</span>
+            </div>
+          </div>
+          <div class="card-hover-bar">
+            <span>View Project</span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="card-visualizer">
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+        </article>
+
+        <article class="project-card reveal" data-index="04">
+          <div class="card-number">04</div>
+          <div class="card-body">
+            <h3 class="card-title">Administrative Automation</h3>
+            <p class="card-desc">Custom workflow engine for bulk report card generation using Apps Script triggers and n8n pipelines.</p>
+            <div class="card-tags">
+              <span class="tag">Google Apps Script</span>
+              <span class="tag">n8n</span>
+            </div>
+          </div>
+          <div class="card-hover-bar">
+            <span>View Project</span>
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="card-visualizer">
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════ THE VAULT ═══════════════════════════════ -->
+  <section class="vault section" id="vault">
+    <div class="container">
+      <div class="section-label reveal">
+        <span class="label-num">03</span>
+        <span class="label-text">The Vault</span>
+      </div>
+      <h2 class="section-heading reveal">On Wax.</h2>
+
+      <div class="player-wrap reveal">
+        <!-- Album Art + Now Playing -->
+        <div class="player-top">
+          <div class="album-art" id="albumArt">
+            <svg viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="90" cy="90" r="88" stroke="#c0392b" stroke-width="0.5" stroke-dasharray="5 7"/>
+              <circle cx="90" cy="90" r="70" stroke="#333" stroke-width="0.3" stroke-dasharray="3 5"/>
+              <circle cx="90" cy="90" r="54" stroke="#222" stroke-width="0.3" stroke-dasharray="2 4"/>
+              <circle cx="90" cy="90" r="38" stroke="#c0392b" stroke-width="0.5" opacity="0.6"/>
+              <circle cx="90" cy="90" r="20" fill="#111"/>
+              <circle cx="90" cy="90" r="7" fill="#c0392b" opacity="0.9"/>
+              <circle cx="90" cy="90" r="3" fill="#0a0a0a"/>
+              <text x="90" y="28" text-anchor="middle" font-family="Syncopate, sans-serif" font-size="6" fill="#c0392b" letter-spacing="3">MINGMA SHERPA</text>
+              <text x="90" y="160" text-anchor="middle" font-family="Syncopate, sans-serif" font-size="5" fill="#555" letter-spacing="2">RHYTHM &amp; CODE</text>
+            </svg>
+          </div>
+          
+          <div class="player-now">
+            <div class="now-label">NOW PLAYING</div>
+            <div class="now-title" id="nowTitle">Vibing</div>
+            <div class="now-artist">Mingma Sherpa</div>
+
+            <audio id="audioPlayer" preload="metadata"></audio>
+            
+            <div class="player-progress-wrap">
+              <span class="time-current" id="timeCurrent">0:00</span>
+              <div class="progress-track" id="progressTrack">
+                <div class="progress-fill" id="progressFill"></div>
+                <div class="progress-thumb" id="progressThumb"></div>
+              </div>
+              <span class="time-total" id="timeTotal">3:03</span>
+            </div>
+
+            <div class="player-controls">
+              <button class="ctrl-btn ctrl-prev" id="btnPrev" aria-label="Previous">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M19 5L9 12l10 7V5zM5 5v14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+              <button class="ctrl-btn ctrl-play" id="btnPlay" aria-label="Play/Pause">
+                <svg class="icon-play" viewBox="0 0 24 24" fill="none"><path d="M5 3l14 9-14 9V3z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+                <svg class="icon-pause hidden" viewBox="0 0 24 24" fill="none"><rect x="6" y="4" width="4" height="16" rx="1" stroke="currentColor" stroke-width="1.5"/><rect x="14" y="4" width="4" height="16" rx="1" stroke="currentColor" stroke-width="1.5"/></svg>
+              </button>
+              <button class="ctrl-btn ctrl-next" id="btnNext" aria-label="Next">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M5 5l10 7-10 7V5zM19 5v14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
+
+            <div class="player-visualizer" id="playerVis">
+              <span></span><span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span><span></span>
+              <span></span><span></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tracklist -->
+        <div class="tracklist">
+          <div class="tracklist-header">
+            <span>TRACK</span>
+            <span>TITLE</span>
+            <span>TIME</span>
+          </div>
+          <ul class="track-list" id="trackList">
+            <li class="track-item active" data-track="0" data-duration="2:45">
+              <span class="track-num">01</span>
+              <span class="track-title">Vibing</span>
+              <span class="track-dur">3:03</span>
+            </li>
+            <li class="track-item" data-track="1" data-duration="3:12">
+              <span class="track-num">02</span>
+              <span class="track-title">Child of God</span>
+              <span class="track-dur">3:13</span>
+            </li>
+            <li class="track-item" data-track="2" data-duration="2:58">
+              <span class="track-num">03</span>
+              <span class="track-title">Kaalpanik Vastavik</span>
+              <span class="track-dur">4:00</span>
+            </li>
+            <li class="track-item" data-track="3" data-duration="3:33">
+              <span class="track-num">04</span>
+              <span class="track-title">Living Lowkey</span>
+              <span class="track-dur">3:06</span>
+            </li>
+            <li class="track-item" data-track="4" data-duration="2:21">
+              <span class="track-num">05</span>
+              <span class="track-title">Grown up</span>
+              <span class="track-dur">3:25</span>
+            </li>
+            <li class="track-item" data-track="5" data-duration="4:02">
+              <span class="track-num">06</span>
+              <span class="track-title">Fukera</span>
+              <span class="track-dur">2:32</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════════════════ CONTACT / FOOTER ════════════════════════════ -->
+  <section class="contact section" id="contact">
+    <div class="container">
+      <div class="section-label reveal">
+        <span class="label-num">04</span>
+        <span class="label-text">Contact</span>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-left reveal">
+          <h2 class="section-heading">Let's Build<br />Something<br /><em>Loud.</em></h2>
+          <p class="contact-tagline">Collabs, commissions, or just vibes—the inbox is open.</p>
+          <div class="social-links">
+            <a href="https://github.com/EmSherpa" class="social-link" aria-label="GitHub">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span>GitHub</span>
+            </a>
+            <a href="https://www.linkedin.com/in/artofming" class="social-link" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="4" cy="4" r="2" stroke="currentColor" stroke-width="1.5"/></svg>
+              <span>LinkedIn</span>
+            </a>
+            <a href="https://www.youtube.com/@EM666MUSIC" class="social-link" aria-label="Youtube">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M2 16.5a4.5 4.5 0 0 1 4.5-4.5c.31 0 .61.03.9.09A6 6 0 0 1 18 12.5a3.5 3.5 0 0 1 0 7H5.5A3.5 3.5 0 0 1 2 16.5z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span>Youtube</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="contact-right reveal">
+          <form class="contact-form" id="contactForm">
+            <div class="form-field">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" placeholder="Your Name" autocomplete="off" />
+            </div>
+            <div class="form-field">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="your@email.com" autocomplete="off" />
+            </div>
+            <div class="form-field">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" placeholder="What's on your mind?" rows="5"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full">
+              <span class="btn-text">Send It</span>
+              <span class="btn-arrow">→</span>
+            </button>
+            <div class="form-success" id="formSuccess">Message sent. Respect. 🤝</div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span class="footer-logo">MINGMA SHERPA</span>
+      <span class="footer-copy">© 2025 — All Rights Reserved. Built with Code &amp; Bars.</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
