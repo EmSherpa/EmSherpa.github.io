@@ -347,7 +347,7 @@ body.cursor-hover .cursor-follower {
   border: 1px solid var(--accent);
 }
 
-.btn-primary:hover { color: var(--black); }
+.btn-primary:hover { color: var(--accent); }
 .btn-primary::before { background: var(--white); }
 .btn-primary:hover::before { transform: translateX(0); }
 
@@ -357,7 +357,7 @@ body.cursor-hover .cursor-follower {
   border: 1px solid rgba(255,255,255,0.3);
 }
 
-.btn-outline:hover { color: var(--black); border-color: var(--white); }
+.btn-outline:hover { color: var(--accent); border-color: var(--white); }
 .btn-outline::before { background: var(--white); }
 .btn-outline:hover::before { transform: translateX(0); }
 
